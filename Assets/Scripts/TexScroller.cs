@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TexScroller : MonoBehaviour
 {
-    float scrollSpeed = .5f;
+    float scrollSpeed = -.5f;
     float offset;
     float rotate;
  

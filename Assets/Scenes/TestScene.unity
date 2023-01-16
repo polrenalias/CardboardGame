@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportTarget: {fileID: 280680746}
-  player: {fileID: 0}
+  player: {fileID: 354604349244444286}
 --- !u!65 &1806856281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1995,7 +1995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6c84ab29fd64841aa6cc7246ff101e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideSpeed: 20
+  slideSpeed: 40
   slideForce: 10
   slideAngle: 30
   slideLayer:
