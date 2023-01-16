@@ -8,8 +8,6 @@ using UnityEngine;
 //-----------------------------------------------------------------------
 
 public class BasicMovement : MonoBehaviour {
-
-    
     new Rigidbody rigidbody;
     new Camera camera;
 
