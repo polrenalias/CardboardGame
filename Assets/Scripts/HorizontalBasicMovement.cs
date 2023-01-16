@@ -22,6 +22,8 @@ public class HorizontalBasicMovement : MonoBehaviour {
     public SlideController slideController;
     public AudioChanger audioChanger;
 
+    private const float HORIZONTAL_MULTIPLIER = 8;
+
     private bool gameHasStarted = false;
 
     public UIManager ui;
@@ -35,7 +37,7 @@ public class HorizontalBasicMovement : MonoBehaviour {
     {
         GUI.skin.label.fontSize = Screen.width / 40;
 
-        GUILayout.Label("Orientation: " + Screen.orientation);
+        GUILayout.Label("Orientation: " + Screen.orientation + ". Speed: " + slideController.slideSpeed);
         GUILayout.Label("input.gyro.attitude: " + Input.gyro.attitude);
         GUILayout.Label("iphone width/font: " + Screen.width + " : " + GUI.skin.label.fontSize);
     }
@@ -66,7 +68,7 @@ public class HorizontalBasicMovement : MonoBehaviour {
             }
         } else if (slideController.isAllowedToSlide) {
             //Vector3 velocity = camera.transform.forward * Input.GetAxis("Vertical") * speed;
-            float w = (Input.gyro.attitude.w)*8;
+            float w = (Input.gyro.attitude.w)*HORIZONTAL_MULTIPLIER;
             Debug.Log(w);
             //agafa valors positius i negatius per si el mòbil esta girat al revès
             Vector3 velocity = gameObject.transform.right * w * speed;
@@ -78,6 +80,9 @@ public class HorizontalBasicMovement : MonoBehaviour {
             slideController.isAllowedToSlide = true;
             audioChanger.StartSlideSong();
             ui.ChangeUserMessage("");
+        }
+        if (gameHasStarted){
+            slideController.slideSpeed += 0.01f;
         }
         // if (Input.GetButtonDown("Jump")) {
         //     Jump();
