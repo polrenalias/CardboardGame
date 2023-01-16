@@ -14,6 +14,8 @@ public class SlideController : MonoBehaviour
     public LayerMask slideLayer;
     private bool isSliding = false;
 
+    public bool isAllowedToSlide = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +26,7 @@ public class SlideController : MonoBehaviour
         if (IsCollidingWithSlide())
         {
             Vector3 normal = CalculateSlideNormal();
-            if (Vector3.Angle(normal, Vector3.up) >= slideAngle)
+            if ((Vector3.Angle(normal, Vector3.up) >= slideAngle) && isAllowedToSlide)
             {
                 isSliding = true;
                 Vector3 slideDirection = Vector3.Cross(normal, Vector3.right);

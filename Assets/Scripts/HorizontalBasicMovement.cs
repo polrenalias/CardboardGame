@@ -8,7 +8,6 @@ using UnityEngine;
 //-----------------------------------------------------------------------
 
 public class HorizontalBasicMovement : MonoBehaviour {
-
     
     new Rigidbody rigidbody;
     new Camera camera;
@@ -16,40 +15,73 @@ public class HorizontalBasicMovement : MonoBehaviour {
     [SerializeField] bool DevMode;
     int jumps = 1;
     [SerializeField] float speed = 3, jumpForce = 500;
-    float rotationSpeed = 45f;
+    // float rotationSpeed = 45f;
+
+    private float f;
+
+    public SlideController slideController;
+    public AudioChanger audioChanger;
+
+    private bool gameHasStarted = false;
+
+    public UIManager ui;
 
     void Start() {
         camera = GetComponentInChildren<Camera>();
         rigidbody = GetComponent<Rigidbody>();
+        Input.gyro.enabled = true;
+    }
+    protected void OnGUI()
+    {
+        GUI.skin.label.fontSize = Screen.width / 40;
+
+        GUILayout.Label("Orientation: " + Screen.orientation);
+        GUILayout.Label("input.gyro.attitude: " + Input.gyro.attitude);
+        GUILayout.Label("iphone width/font: " + Screen.width + " : " + GUI.skin.label.fontSize);
     }
     
     void Update() {
+        // Debug.Log(Input.gyro.attitude);
+        if (!gameHasStarted) f = Input.acceleration.z;
         if (DevMode) {
-            if (Input.GetKey("w")) 
-			{
-                Vector3 velocity = camera.transform.forward * 1 * speed;
-                transform.position += velocity * Time.deltaTime;
-			}
-            if (Input.GetKey("s"))
-                {
-                Vector3 velocity = camera.transform.forward * -1 * speed;
-                transform.position += velocity * Time.deltaTime;
-                }
-            if (Input.GetKey("d")) transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-            if (Input.GetKey("a")) transform.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
-        } else {
-            //Vector3 velocity = camera.transform.forward * Input.GetAxis("Vertical") * speed;
-            float f = Input.acceleration.z;
-            //agafa valors positius i negatius per si el mòbil esta girat al revès
-            if (f>0.3f || f<-0.3f)
+            // if (Input.GetKey("w")) 
+			// {
+            //     Vector3 velocity = camera.transform.forward * 1 * speed;
+            //     transform.position += velocity * Time.deltaTime;
+			// }
+            // if (Input.GetKey("s"))
+            // {
+            //     Vector3 velocity = camera.transform.forward * -1 * speed;
+            //     transform.position += velocity * Time.deltaTime;
+            // }
+            if (Input.GetKey("d")) 
             {
-                Vector3 velocity = camera.transform.forward * 1 * speed;
+                Vector3 velocity = gameObject.transform.right * 1 * speed;
                 transform.position += velocity * Time.deltaTime;
             }
+            if (Input.GetKey("a"))
+            {
+                Vector3 velocity = gameObject.transform.right * -1 * speed;
+                transform.position += velocity * Time.deltaTime;
+            }
+        } else if (slideController.isAllowedToSlide) {
+            //Vector3 velocity = camera.transform.forward * Input.GetAxis("Vertical") * speed;
+            float w = (Input.gyro.attitude.w)*8;
+            Debug.Log(w);
+            //agafa valors positius i negatius per si el mòbil esta girat al revès
+            Vector3 velocity = gameObject.transform.right * w * speed;
+            transform.position += velocity * Time.deltaTime;
         }
-        if (Input.GetButtonDown("Jump")) {
-            Jump();
+        if (!gameHasStarted && f>0.5f)
+        {
+            gameHasStarted = true;
+            slideController.isAllowedToSlide = true;
+            audioChanger.StartSlideSong();
+            ui.ChangeUserMessage("");
         }
+        // if (Input.GetButtonDown("Jump")) {
+        //     Jump();
+        // }
     }
 
     public void Jump() {
