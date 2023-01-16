@@ -32,7 +32,7 @@ namespace Gio {
         }
 
         void Update() {
-
+            GetComponent<Skybox>().material.SetFloat("_Rotation", Time.time * 0.23f);
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, maxDistance)) {
 
                 TriggerEvent trigger = hit.transform.GetComponent<TriggerEvent>();

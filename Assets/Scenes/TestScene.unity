@@ -1835,6 +1835,7 @@ GameObject:
   - component: {fileID: 354604348627777151}
   - component: {fileID: 354604348627777144}
   - component: {fileID: 354604348627777145}
+  - component: {fileID: 354604348627777152}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1901,6 +1902,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354604348627777147}
   m_Enabled: 1
+--- !u!45 &354604348627777152
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354604348627777147}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: b13109bc4674dd24ebc04b7c12437ad6, type: 2}
 --- !u!136 &354604349244444226
 CapsuleCollider:
   m_ObjectHideFlags: 0
