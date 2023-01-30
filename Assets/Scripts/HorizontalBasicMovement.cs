@@ -16,7 +16,6 @@ public class HorizontalBasicMovement : MonoBehaviour {
     int jumps = 1;
     [SerializeField] float speed = 3, jumpForce = 500;
     // float rotationSpeed = 45f;
-
     private float f;
 
     public SlideController slideController;
@@ -69,7 +68,6 @@ public class HorizontalBasicMovement : MonoBehaviour {
         } else if (slideController.isAllowedToSlide) {
             //Vector3 velocity = camera.transform.forward * Input.GetAxis("Vertical") * speed;
             float w = (Input.gyro.attitude.w)*HORIZONTAL_MULTIPLIER;
-            Debug.Log(w);
             //agafa valors positius i negatius per si el mòbil esta girat al revès
             Vector3 velocity = gameObject.transform.right * w * speed;
             transform.position += velocity * Time.deltaTime;
@@ -84,9 +82,6 @@ public class HorizontalBasicMovement : MonoBehaviour {
         if (gameHasStarted){
             slideController.slideSpeed += 0.01f;
         }
-        // if (Input.GetButtonDown("Jump")) {
-        //     Jump();
-        // }
     }
 
     public void Jump() {
