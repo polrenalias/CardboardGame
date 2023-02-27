@@ -245,6 +245,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47a0e95dc51b154ea836056768ebc93, type: 3}
+--- !u!1 &250959172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 250959173}
+  - component: {fileID: 250959174}
+  m_Layer: 0
+  m_Name: AsteroidSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &250959173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250959172}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.829769, y: -150.91003, z: 242.86328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1842434362}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &250959174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250959172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce03452d0b4f884ea796cc96dd3e6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidObjects:
+  - {fileID: 5805614701063560725, guid: 7c427f34a740d564e8a463441be0a590, type: 3}
+  - {fileID: 4965288929702541814, guid: db11ca6e7f5eaa547b0745f8691647ee, type: 3}
+  - {fileID: 610219994472010551, guid: 8d3f6f6bf5dba474e8224052fb574593, type: 3}
+  - {fileID: 4811018143546933789, guid: 1635f500ca374934d899e9c09412df93, type: 3}
+  amountAsteroidsToSpawn: 300
+  minRandomSpawn: -500
+  maxRandomSpawn: 500
 --- !u!1 &266524214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2807,6 +2859,7 @@ Transform:
   - {fileID: 894259254}
   - {fileID: 1806856284}
   - {fileID: 280680746}
+  - {fileID: 250959173}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3289,7 +3342,6 @@ GameObject:
   - component: {fileID: 354604349244444288}
   - component: {fileID: 354604349244444287}
   - component: {fileID: 354604349244444289}
-  - component: {fileID: 354604349244444290}
   m_Layer: 0
   m_Name: 'Player '
   m_TagString: Untagged
@@ -3352,8 +3404,11 @@ MonoBehaviour:
   maxLife: 0
   lifes: {fileID: 1833352997}
   points: 0
+<<<<<<< Updated upstream
+=======
   deathParticles: {fileID: 1543230693079089897, guid: 3da52545197e1154d87952de8cc73244, type: 3}
   deathExplosionSound: {fileID: 354604349244444290}
+  slideController: {fileID: 354604349244444287}
 --- !u!82 &354604349244444290
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3365,7 +3420,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ebc903754c4cfe40adf283fa9767030, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3450,6 +3505,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+>>>>>>> Stashed changes
 --- !u!4 &1084581783646780546
 Transform:
   m_ObjectHideFlags: 0

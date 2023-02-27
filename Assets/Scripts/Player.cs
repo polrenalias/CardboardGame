@@ -14,11 +14,6 @@ public class Player : MonoBehaviour
 
     bool canReceiveDamage = true;
 
-    public GameObject deathParticles;
-    public AudioSource deathExplosionSound;
-
-    public SlideController slideController;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +31,15 @@ public class Player : MonoBehaviour
             canReceiveDamage = false;
             life--;
             lifes.removeLifePoint();
-            // Debug.Log (life);
+<<<<<<< Updated upstream
+            Debug.Log (life);
+=======
+>>>>>>> Stashed changes
             if (life == 0)
             {
                 die();
             }
-            StartCoroutine(damageTime(0.5f));
+            StartCoroutine(damageTime());
         }
     }
 
@@ -51,24 +49,28 @@ public class Player : MonoBehaviour
         life++;
     }
 
-    private IEnumerator damageTime(float seconds)
+    private IEnumerator damageTime()
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(0.5f);
         canReceiveDamage = true;
     }
 
     public void die()
     {
+<<<<<<< Updated upstream
+=======
         Instantiate(deathParticles, transform.position, Quaternion.identity);
         deathExplosionSound.Play();
-        slideController.isAllowedToSlide = false;
-        Debug.Log(slideController.isAllowedToSlide);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        // slideController.isAllowedToSlide = false;
         StartCoroutine(deathTime(3f));
     }
 
     private IEnumerator deathTime(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+>>>>>>> Stashed changes
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
