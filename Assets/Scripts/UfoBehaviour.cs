@@ -7,6 +7,7 @@ using System;
 public class UfoBehaviour : MonoBehaviour
 {
     float position;
+    float originalPosition;
     float speed = 4f;
     float distance = -7f;    
 
@@ -21,14 +22,16 @@ public class UfoBehaviour : MonoBehaviour
 
     void Start()
     {
+        originalPosition = transform.position.x;
         SetObstacle();
     }
 
     void SetObstacle()
     {
-        position = transform.position.x; // TODO: Check this variable, obstacles move every teleport
-        if (UnityEngine.Random.Range(0,3) == 0)
+        position = originalPosition; // TODO: Check this variable, obstacles move every teleport
+        if (UnityEngine.Random.Range(0,2) == 0)
         {
+            // Left or right movement
             if (UnityEngine.Random.Range(0,2) == 0) 
             {
                 distance = Math.Abs(distance);
@@ -37,6 +40,7 @@ public class UfoBehaviour : MonoBehaviour
         else
         {
             gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            // Repair
             if (UnityEngine.Random.Range(0,10) == 0)
             {
                 gameObject.transform.GetChild(1).gameObject.SetActive(true);
@@ -44,6 +48,7 @@ public class UfoBehaviour : MonoBehaviour
             }
             else
             {
+                // It's nothing
                 gameObject.GetComponent<SphereCollider>().enabled = false;
             }
 
@@ -53,8 +58,10 @@ public class UfoBehaviour : MonoBehaviour
     public void Reboot()
     {
         isRepair = false;
+        gameObject.GetComponent<SphereCollider>().enabled = true;
         gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
         gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        distance = -7f;
         SetObstacle();
     }
 
