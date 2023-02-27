@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
 
     bool canReceiveDamage = true;
 
+    public GameObject deathParticles;
+    public AudioSource deathExplosionSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +39,7 @@ public class Player : MonoBehaviour
             {
                 die();
             }
-            StartCoroutine(damageTime());
+            StartCoroutine(damageTime(0.5f));
         }
     }
 
@@ -46,14 +49,22 @@ public class Player : MonoBehaviour
         life++;
     }
 
-    private IEnumerator damageTime()
+    private IEnumerator damageTime(float seconds)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(seconds);
         canReceiveDamage = true;
     }
 
     public void die()
     {
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        deathExplosionSound.Play();
+        StartCoroutine(deathTime(3f));
+    }
+
+    private IEnumerator deathTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
