@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public GameObject deathParticles;
     public AudioSource deathExplosionSound;
 
+    public SlideController slideController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class Player : MonoBehaviour
             canReceiveDamage = false;
             life--;
             lifes.removeLifePoint();
-            Debug.Log (life);
+            // Debug.Log (life);
             if (life == 0)
             {
                 die();
@@ -59,6 +61,8 @@ public class Player : MonoBehaviour
     {
         Instantiate(deathParticles, transform.position, Quaternion.identity);
         deathExplosionSound.Play();
+        slideController.isAllowedToSlide = false;
+        Debug.Log(slideController.isAllowedToSlide);
         StartCoroutine(deathTime(3f));
     }
 

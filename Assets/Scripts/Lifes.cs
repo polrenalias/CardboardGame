@@ -16,7 +16,7 @@ public class Lifes : MonoBehaviour
             player.life++;
         }
         player.maxLife = player.life;
-        Debug.Log(player.life);
+        // Debug.Log(player.life);
     }
 
     // Update is called once per frame
