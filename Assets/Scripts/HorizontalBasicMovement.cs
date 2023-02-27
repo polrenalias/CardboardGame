@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //-----------------------------------------------------------------------
 // Basic movement when we want the player to move using a gamepad

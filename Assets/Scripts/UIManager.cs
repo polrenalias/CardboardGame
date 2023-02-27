@@ -8,10 +8,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI userMessage;
     public TextMeshProUGUI score;
+    public TextMeshProUGUI highScore;
     // Start is called before the first frame update
     void Start()
     {
-        
+        highScore.text = "High Score: "+PlayerPrefs.GetFloat("highScore", 0);
     }
 
     // Update is called once per frame
@@ -24,5 +25,6 @@ public class UIManager : MonoBehaviour
     {
         userMessage.text = s;
         title.text = "";
+        highScore.gameObject.SetActive(false);
     }
 }

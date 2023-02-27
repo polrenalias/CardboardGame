@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         // slideController.isAllowedToSlide = false;
         Debug.Log(slideController.isAllowedToSlide);
+        PlayerPrefs.SetFloat("highScore", points);
         StartCoroutine(deathTime(3f));
     }
 
