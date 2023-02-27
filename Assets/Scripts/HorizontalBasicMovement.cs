@@ -27,6 +27,9 @@ public class HorizontalBasicMovement : MonoBehaviour {
 
     public UIManager ui;
 
+    public GameObject lifes;
+    public GameObject score;
+
     void Start() {
         camera = GetComponentInChildren<Camera>();
         rigidbody = GetComponent<Rigidbody>();
@@ -78,6 +81,8 @@ public class HorizontalBasicMovement : MonoBehaviour {
             slideController.isAllowedToSlide = true;
             audioChanger.StartSlideSong();
             ui.ChangeUserMessage("");
+            lifes.SetActive(true);
+            score.SetActive(true);
         }
         if (gameHasStarted){
             slideController.slideSpeed += 0.01f;
