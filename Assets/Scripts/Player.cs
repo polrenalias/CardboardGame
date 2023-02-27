@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
 
     bool canReceiveDamage = true;
 
+    public GameObject deathParticles;
+    public AudioSource deathExplosionSound;
+
+    public SlideController slideController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +36,12 @@ public class Player : MonoBehaviour
             canReceiveDamage = false;
             life--;
             lifes.removeLifePoint();
-            Debug.Log (life);
+            // Debug.Log (life);
             if (life == 0)
             {
                 die();
             }
-            StartCoroutine(damageTime());
+            StartCoroutine(damageTime(0.5f));
         }
     }
 
@@ -46,14 +51,24 @@ public class Player : MonoBehaviour
         life++;
     }
 
-    private IEnumerator damageTime()
+    private IEnumerator damageTime(float seconds)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(seconds);
         canReceiveDamage = true;
     }
 
     public void die()
     {
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        deathExplosionSound.Play();
+        slideController.isAllowedToSlide = false;
+        Debug.Log(slideController.isAllowedToSlide);
+        StartCoroutine(deathTime(3f));
+    }
+
+    private IEnumerator deathTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

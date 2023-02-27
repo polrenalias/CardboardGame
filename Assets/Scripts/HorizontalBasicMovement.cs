@@ -34,6 +34,7 @@ public class HorizontalBasicMovement : MonoBehaviour {
         camera = GetComponentInChildren<Camera>();
         rigidbody = GetComponent<Rigidbody>();
         Input.gyro.enabled = true;
+        if (DevMode) StartGame();
     }
     protected void OnGUI()
     {
@@ -77,16 +78,20 @@ public class HorizontalBasicMovement : MonoBehaviour {
         }
         if (!gameHasStarted && f>0.5f)
         {
-            gameHasStarted = true;
-            slideController.isAllowedToSlide = true;
-            audioChanger.StartSlideSong();
-            ui.ChangeUserMessage("");
-            lifes.SetActive(true);
-            score.SetActive(true);
+            StartGame();
         }
         if (gameHasStarted){
             slideController.slideSpeed += 0.01f;
         }
+    }
+
+    public void StartGame() {
+        gameHasStarted = true;
+        slideController.isAllowedToSlide = true;
+        audioChanger.StartSlideSong();
+        ui.ChangeUserMessage("");
+        lifes.SetActive(true);
+        score.SetActive(true);
     }
 
     public void Jump() {
