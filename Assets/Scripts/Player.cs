@@ -61,7 +61,9 @@ public class Player : MonoBehaviour
     {
         Instantiate(deathParticles, transform.position, Quaternion.identity);
         deathExplosionSound.Play();
-        slideController.isAllowedToSlide = false;
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        // slideController.isAllowedToSlide = false;
         Debug.Log(slideController.isAllowedToSlide);
         StartCoroutine(deathTime(3f));
     }

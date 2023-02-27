@@ -28,7 +28,6 @@ public class SlideController : MonoBehaviour
             Vector3 normal = CalculateSlideNormal();
             if ((Vector3.Angle(normal, Vector3.up) >= slideAngle) && isAllowedToSlide)
             {
-                Debug.Log(isAllowedToSlide);
                 isSliding = true;
                 Vector3 slideDirection = Vector3.Cross(normal, Vector3.right);
                 rb.AddForce(slideDirection * slideForce, ForceMode.Acceleration);

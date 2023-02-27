@@ -3354,6 +3354,7 @@ MonoBehaviour:
   points: 0
   deathParticles: {fileID: 1543230693079089897, guid: 3da52545197e1154d87952de8cc73244, type: 3}
   deathExplosionSound: {fileID: 354604349244444290}
+  slideController: {fileID: 354604349244444287}
 --- !u!82 &354604349244444290
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3364,7 +3365,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8ebc903754c4cfe40adf283fa9767030, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 902e0e18f5d0aaa46928367201a534aa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
