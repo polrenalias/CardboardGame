@@ -31,10 +31,13 @@ public class HorizontalBasicMovement : MonoBehaviour {
     public GameObject lifes;
     public GameObject score;
 
+    private float initialGyroRotation;
+
     void Start() {
         camera = GetComponentInChildren<Camera>();
         rigidbody = GetComponent<Rigidbody>();
         Input.gyro.enabled = true;
+        initialGyroRotation = Input.gyro.attitude.w;
         if (DevMode) StartGame();
     }
     protected void OnGUI()
@@ -44,10 +47,12 @@ public class HorizontalBasicMovement : MonoBehaviour {
         GUILayout.Label("Orientation: " + Screen.orientation + ". Speed: " + slideController.slideSpeed);
         GUILayout.Label("input.gyro.attitude: " + Input.gyro.attitude);
         GUILayout.Label("iphone width/font: " + Screen.width + " : " + GUI.skin.label.fontSize);
+        GUILayout.Label("CAalculated attitude: " + (Input.gyro.attitude.w - initialGyroRotation));
     }
     
     void Update() {
         // Debug.Log(Input.gyro.attitude);
+       
         if (!gameHasStarted) f = Input.acceleration.z;
         if (DevMode) {
             // if (Input.GetKey("w")) 
@@ -72,7 +77,7 @@ public class HorizontalBasicMovement : MonoBehaviour {
             }
         } else if (slideController.isAllowedToSlide) {
             //Vector3 velocity = camera.transform.forward * Input.GetAxis("Vertical") * speed;
-            float w = (Input.gyro.attitude.w)*HORIZONTAL_MULTIPLIER;
+            float w = (Input.gyro.attitude.w - initialGyroRotation)*HORIZONTAL_MULTIPLIER;
             //agafa valors positius i negatius per si el mòbil esta girat al revès
             Vector3 velocity = gameObject.transform.right * w * speed;
             transform.position += velocity * Time.deltaTime;
