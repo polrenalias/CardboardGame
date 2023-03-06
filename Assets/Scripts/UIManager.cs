@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highScore.text = "High Score: "+PlayerPrefs.GetFloat("highScore", 0);
+        highScore.text = "High Score: "+PlayerPrefs.GetInt("highScore", 0);
     }
 
     // Update is called once per frame

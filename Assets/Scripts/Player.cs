@@ -18,17 +18,7 @@ public class Player : MonoBehaviour
     public AudioSource deathExplosionSound;
 
     public SlideController slideController;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    // The player loses a pint of life
     public void losePoint()
     {
         if (canReceiveDamage)
@@ -44,34 +34,39 @@ public class Player : MonoBehaviour
             StartCoroutine(damageTime(0.5f));
         }
     }
-
+    // The player gains a point of life
     public void gainPoint()
     {
         lifes.addLifePoint();
         life++;
     }
-
+    // Cooldown between multiple hits
     private IEnumerator damageTime(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         canReceiveDamage = true;
     }
-
+    // The player dies, after some time the scene restarts
     public void die()
     {
         Instantiate(deathParticles, transform.position, Quaternion.identity);
         deathExplosionSound.Play();
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        // slideController.isAllowedToSlide = false;
-        Debug.Log(slideController.isAllowedToSlide);
-        PlayerPrefs.SetFloat("highScore", points);
+        slideController.isAllowedToSlide = false;
+        setNewScore();
         StartCoroutine(deathTime(3f));
     }
-
+    // Delays the restart of the scene
     private IEnumerator deathTime(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    // Saves the highscore of the player as a PlayerPrefab in order to show it on the main screen
+    private void setNewScore() {
+        if (PlayerPrefs.GetInt("highScore") < points){
+            PlayerPrefs.SetInt("highScore", points);
+        }
     }
 }

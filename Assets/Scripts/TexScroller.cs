@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Scrolls the texture of the slide
 public class TexScroller : MonoBehaviour
 {
     float scrollSpeed = -.5f;

@@ -13,7 +13,7 @@ public class AsteroidSpawner : MonoBehaviour
     {
         SpawnAsteroid();
     }
-    
+    // Spawns random asteroids on the box
     void SpawnAsteroid()
     {
         for (int i = 0; i < amountAsteroidsToSpawn; i++)

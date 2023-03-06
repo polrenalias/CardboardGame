@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class Finalizer : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other) 
-    {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+
+  public Player player;
+  // If the player touches this zone it dies, avoiding an infinite fall if the player get's out of the slide
+  void OnTriggerEnter(Collider other) 
+  {
+    player.die();
+  }
 }

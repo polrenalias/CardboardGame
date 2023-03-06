@@ -25,6 +25,8 @@ public class SlideController : MonoBehaviour
     {
         if (IsCollidingWithSlide())
         {
+            // If the user it's colliding with the slide and it's allowed to slide we allow him to slide
+            // NOTE that deactivating isAllowedToSlide is not going to stop the player, rather it's going to keep going due to the physics applied to the object
             Vector3 normal = CalculateSlideNormal();
             if ((Vector3.Angle(normal, Vector3.up) >= slideAngle) && isAllowedToSlide)
             {
@@ -34,6 +36,7 @@ public class SlideController : MonoBehaviour
             }
             else
             {
+                // If the requeriments are not meet
                 isSliding = false;
             }
         }
@@ -42,7 +45,7 @@ public class SlideController : MonoBehaviour
             isSliding = false;
         }
     }
-
+    // Detects via raycast if the user is colliding with the slide
     bool IsCollidingWithSlide()
     {
         RaycastHit hit;
@@ -52,7 +55,7 @@ public class SlideController : MonoBehaviour
         }
         return false;
     }
-
+    // Slide physics
     Vector3 CalculateSlideNormal()
     {
         RaycastHit hit;
@@ -65,7 +68,7 @@ public class SlideController : MonoBehaviour
             return Vector3.up;
         }
     }
-
+    // Velocity
     void FixedUpdate()
     {
         if (isSliding)

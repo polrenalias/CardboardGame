@@ -10,10 +10,12 @@ public class Teleporter : MonoBehaviour
     public UIManager ui;
     public RebootAllObstacles obstacles;
 
+    public int POINTS_BY_ROUND = 100;
+    // This object is used to return the player to the start of the slide and restart the obstacles
     void OnTriggerEnter(Collider other) 
     {
         playerGameObject.transform.position = new Vector3(playerGameObject.transform.position.x, teleportTarget.transform.position.y,  teleportTarget.transform.position.z);
-        player.points += 100;
+        player.points += POINTS_BY_ROUND;
         ui.score.text = "Score: " + player.points.ToString();
         obstacles.RebootAll();
     }
